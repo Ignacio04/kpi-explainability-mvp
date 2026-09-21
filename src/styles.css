@@ -1,0 +1,278 @@
+:root {
+  font-family: Inter, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #11213d;
+  background: #edf4ff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  min-height: 100%;
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f4f7ff 0%, #ebf2ff 100%);
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.card {
+  width: min(1100px, 100%);
+  background: #ffffff;
+  border: 1px solid #dfeafc;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(16, 38, 76, 0.08);
+  padding: 32px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #3c6ef5;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.15;
+}
+
+.tag {
+  background: #edf3ff;
+  color: #2146be;
+  border: 1px solid #d6e3ff;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.summary-box {
+  background: #f7f9ff;
+  border: 1px solid #e3ebfb;
+  border-radius: 18px;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary-box.primary {
+  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+  border-color: transparent;
+  color: white;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+}
+
+.summary-box strong {
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  line-height: 1.1;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+.panel {
+  background: #f9fbff;
+  border: 1px solid #e8eefb;
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.panel h2 {
+  margin: 0 0 16px;
+  font-size: 1.2rem;
+}
+
+.distribution-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.distribution-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.distribution-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.level {
+  font-weight: 800;
+}
+
+.count {
+  font-size: 0.8rem;
+  color: #5d6d8d;
+}
+
+.bar-track {
+  width: 100%;
+  height: 14px;
+  background: #e6eefb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #60a5fa 0%, #2563eb 100%);
+}
+
+.formula-box {
+  background: white;
+  border: 1px solid #e5edfd;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.formula-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #586a87;
+}
+
+.formula-box p {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.calc-grid > div {
+  background: white;
+  border: 1px solid #e5edfd;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mini-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #586a87;
+}
+
+.explanation-panel {
+  margin-bottom: 22px;
+}
+
+.explanation-panel p {
+  margin: 0;
+  line-height: 1.7;
+  color: #23314d;
+}
+
+.values-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.value-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #e0ebff;
+  color: #1d4ed8;
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .card {
+    padding: 20px 16px;
+  }
+
+  .header,
+  .summary-grid,
+  .two-columns,
+  .calc-grid {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .header {
+    gap: 10px;
+  }
+
+  .distribution-row {
+    grid-template-columns: 1fr;
+  }
+}
