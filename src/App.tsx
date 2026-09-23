@@ -1,24 +1,86 @@
+import { useState } from "react";
+import SetupScreen from "./SetupScreen";
+
 type ResponseDistribution = {
   level: number;
   count: number;
 };
 
-const responseValues = [4, 5, 3, 4, 5, 2, 4, 5, 3, 4, 5, 4, 3, 4];
+type ThresholdBand = {
+  className: string;
+  label: string;
+  interpretation: string;
+};
 
-const distribution: ResponseDistribution[] = [1, 2, 3, 4, 5].map((level) => ({
-  level,
-  count: responseValues.filter((value) => value === level).length,
-}));
+const KPI_LABELS: Record<string, string> = {
+  "clareza-metas": "Clareza de metas e objetivos",
+};
 
-const totalResponses = responseValues.length;
-const totalSum = responseValues.reduce((acc, value) => acc + value, 0);
-const averageScore = totalSum / totalResponses;
-const kpiValue = (averageScore / 5) * 100;
-const formula = "KPI = (média das respostas / 5) × 100";
-const explanation = `A média geral foi ${averageScore.toFixed(2)} em uma escala de 1 a 5. Como a maioria das respostas ficou nos níveis 4 e 5, o resultado indica uma percepção positiva, embora ainda haja espaço para melhorar a clareza dos objetivos.`;
+function getThresholdBand(kpiValue: number): ThresholdBand {
+  if (kpiValue < 60) {
+    return {
+      className: "danger",
+      label: "Atenção urgente",
+      interpretation:
+        "O resultado está abaixo de 60%, indicando que os respondentes percebem problemas significativos. Este indicador exige atenção urgente e ações corretivas imediatas para reverter a percepção negativa.",
+    };
+  }
+  if (kpiValue <= 80) {
+    return {
+      className: "warning",
+      label: "Precisa de atenção",
+      interpretation:
+        "O resultado está entre 60% e 80%, sinalizando que há espaço relevante para melhorias. Embora não seja crítico, este indicador merece atenção e ações de melhoria planejadas.",
+    };
+  }
+  return {
+    className: "success",
+    label: "Bom desempenho",
+    interpretation:
+      "O resultado está acima de 80%, indicando uma percepção positiva por parte dos respondentes. O indicador está em um nível saudável, mas acompanhamento contínuo é recomendado.",
+  };
+}
 
 export default function App() {
+  const [screen, setScreen] = useState<"setup" | "dashboard">("setup");
+  const [responseValues, setResponseValues] = useState<number[]>([]);
+  const [kpiName, setKpiName] = useState("clareza-metas");
+
+  function handleCalculate(selectedKpi: string, values: number[]) {
+    setKpiName(selectedKpi);
+    setResponseValues(values);
+    setScreen("dashboard");
+  }
+
+  function handleBack() {
+    setScreen("setup");
+  }
+
+  if (screen === "setup") {
+    return (
+      <SetupScreen
+        initialValues={responseValues}
+        initialKpi={kpiName}
+        onCalculate={handleCalculate}
+      />
+    );
+  }
+
+  // Dashboard calculations
+  const distribution: ResponseDistribution[] = [1, 2, 3, 4, 5].map((level) => ({
+    level,
+    count: responseValues.filter((value) => value === level).length,
+  }));
+
+  const totalResponses = responseValues.length;
+  const totalSum = responseValues.reduce((acc, value) => acc + value, 0);
+  const averageScore = totalSum / totalResponses;
+  const kpiValue = (averageScore / 5) * 100;
+  const formula = "KPI = (média das respostas / 5) × 100";
   const maxCount = Math.max(...distribution.map((item) => item.count), 1);
+  const band = getThresholdBand(kpiValue);
+
+  const explanation = `A média geral foi ${averageScore.toFixed(2)} em uma escala de 1 a 5, resultando em um KPI de ${kpiValue.toFixed(1)}%. ${band.interpretation}`;
 
   return (
     <main className="page">
@@ -26,13 +88,18 @@ export default function App() {
         <header className="header">
           <div>
             <p className="eyebrow">KPI Explainability MVP</p>
-            <h1>Clareza de metas e objetivos</h1>
+            <h1>{KPI_LABELS[kpiName] || kpiName}</h1>
           </div>
-          <span className="tag">Pesquisa interna</span>
+          <div className="header-actions">
+            <span className={`tag tag-${band.className}`}>{band.label}</span>
+            <button type="button" className="btn-back" onClick={handleBack}>
+              ← Voltar
+            </button>
+          </div>
         </header>
 
         <div className="summary-grid">
-          <article className="summary-box primary">
+          <article className={`summary-box primary primary-${band.className}`}>
             <span className="label">Valor do KPI</span>
             <strong>{kpiValue.toFixed(1)}%</strong>
           </article>

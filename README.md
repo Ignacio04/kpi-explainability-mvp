@@ -17,19 +17,11 @@ O objetivo do MVP é demonstrar como um KPI pode deixar de ser apresentado apena
 
 ## Escopo
 
-O MVP utiliza dados estáticos e apresenta um único KPI baseado em respostas de uma escala de 1 a 5.
+O MVP utiliza dados dinâmicos e apresenta um único KPI baseado em respostas de uma escala de 1 a 5.
 
 O cálculo utilizado é:
 
 KPI = (média das respostas / 5) × 100
-
-Para o conjunto de dados utilizado no protótipo:
-
-- 14 respostas;
-- soma das respostas: 55;
-- média aritmética: 3,93;
-- escala máxima: 5;
-- KPI resultante: 78,6%.
 
 A interface apresenta também a distribuição das respostas e os valores individuais utilizados no cálculo.
 

@@ -37,12 +37,10 @@ Durante a implementação, os artefatos foram utilizados como referência para v
 
 O resultado foi uma aplicação standalone que demonstra uma forma simples de tornar o cálculo de um KPI mais transparente.
 
-Para o conjunto de dados utilizado, são apresentadas 14 respostas, cuja soma é 55. A média aritmética é 3,93 em uma escala máxima de 5, resultando em um KPI de aproximadamente 78,6%.
-
 O protótipo permite visualizar diretamente a relação entre os dados de entrada, a fórmula e o resultado final, servindo como uma primeira exploração do problema de explicabilidade que será aprofundado no mestrado.
 
 ## Limitações e próximos passos
 
-O MVP utiliza dados estáticos e uma única fórmula de cálculo. Portanto, ainda não contempla diferentes tipos de KPI, dados reais, interação com usuários ou técnicas mais avançadas de explicabilidade.
+O MVP utiliza dados dinâmicos e uma única fórmula de cálculo. Portanto, ainda não contempla diferentes tipos de KPI, interação com usuários ou técnicas mais avançadas de explicabilidade.
 
 Como próximos passos, seria possível avaliar diferentes formas de apresentar explicações, comparar estratégias de visualização e investigar como usuários interpretam essas explicações em KPIs mais complexos.
